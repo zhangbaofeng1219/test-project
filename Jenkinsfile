@@ -7,7 +7,7 @@ pipeline {
             }
 
     stages {
-        stage('Prepare...') {
+        stage('INSTALL') {
             
             steps {
                 script {
