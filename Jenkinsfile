@@ -29,7 +29,7 @@ pipeline {
                         
                          echo "remove END"
                     }
-                    sh "finished"
+                     echo "finished"
                 }
             }
         }
