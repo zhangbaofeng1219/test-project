@@ -121,7 +121,7 @@ EOF"
 #修改主机名
 hostnamectl set-hostname node-01
 ssh ${nodeIp02} "hostnamectl set-hostname node-02"
-ssh ${nodeIp02} "hostnamectl set-hostname node-03"
+ssh ${nodeIp03} "hostnamectl set-hostname node-03"
 
 
 
