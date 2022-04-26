@@ -2,7 +2,7 @@
 
 echo "###########################################【安装 START】################################################"
 
-#bash /data/install/configure_ssh_without_pass
+bash /data/install/configure_ssh_without_pass
 
 cd /data/install
 cd /data/install  && yes yes|./bk_install common
