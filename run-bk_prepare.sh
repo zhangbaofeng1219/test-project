@@ -8,6 +8,7 @@ node_pwd=${4}
 domain=${5}
 bk_pwd=${6}
 
+echo "参数："${nodeIp01}"@@@"${nodeIp02}"@@@"${nodeIp03}"@@@"${node_pwd}"@@@"${domain}"@@@"${bk_pwd}
 echo "执行免密"
 yum install -y sshpass
 ssh-keygen -t rsa -N '' -f ~/.ssh/id_rsa <<< y
