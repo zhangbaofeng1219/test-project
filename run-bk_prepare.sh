@@ -11,6 +11,7 @@ bk_pwd=${6}
 echo "执行免密"
 yum install -y sshpass
 ssh-keygen -t rsa -N '' -f ~/.ssh/id_rsa <<< y
+cd /root/.ssh && cat id_rsa.pub >> authorized_keys
 sed -i '/StrictHostKeyChecking/c StrictHostKeyChecking no' /etc/ssh/ssh_config
 sshpass -p ${node_pwd} ssh-copy-id  root@${nodeIp02} -p 22 
 sshpass -p ${node_pwd} ssh-copy-id  root@${nodeIp03} -p 22
@@ -95,26 +96,26 @@ root hard nofile 102400
 EOF"
 
 echo "修改主机名"
-hostnamectl set-hostname ${nodeIp01}
-ssh ${nodeIp02} "hostnamectl set-hostname ${nodeIp02}"
-ssh ${nodeIp03} "hostnamectl set-hostname ${nodeIp03}"
+hostnamectl set-hostname node-01
+ssh ${nodeIp02} "hostnamectl set-hostname node-02"
+ssh ${nodeIp03} "hostnamectl set-hostname node-03"
 
 
 
 
 echo "解压安装包"
-tar xf /data/bkce_basic_suite-6.0.5.tgz -C /data
+#tar xf /data/bkce_basic_suite-6.0.5.tgz -C /data
 
 echo "解压产品包"
-cd /data/src/; for f in *gz;do tar xf $f; done
+#cd /data/src/; for f in *gz;do tar xf $f; done
 
 echo "拷贝 rpm 包文件夹到 /opt/ 目录"
-cp -a /data/src/yum /opt
+#cp -a /data/src/yum /opt
 
 echo "解压证书文件"
-install -d -m 755 /data/src/cert
-tar xf /data/ssl_certificates.tar.gz -C /data/src/cert/
-chmod 644 /data/src/cert/*
+#install -d -m 755 /data/src/cert
+#tar xf /data/ssl_certificates.tar.gz -C /data/src/cert/
+#chmod 644 /data/src/cert/*
 
 echo "准备install.config配置文件"
 # 请根据实际机器的 IP 进行替换第一列的示例 IP 地址，确保三个 IP 之间能互相通信
