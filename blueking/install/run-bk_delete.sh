@@ -6,6 +6,8 @@ nodeIp01=${1}
 nodeIp02=${2}
 nodeIp03=${3}
 
+echo "参数："${nodeIp01}"@@@"${nodeIp02}"@@@"${nodeIp03}
+
 echo "建议先卸载其他节点的机器，最后卸载中控机节点"
 ssh ${nodeIp02} "cd /data/install && cp uninstall/uninstall.sh . && yes yes|bash uninstall.sh"
 ssh ${nodeIp03} "cd /data/install && cp uninstall/uninstall.sh . && yes yes|bash uninstall.sh"

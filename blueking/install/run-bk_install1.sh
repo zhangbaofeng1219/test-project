@@ -4,11 +4,10 @@ echo "###########################################【解压和配置 START】####
 nodeIp01=${1}
 nodeIp02=${2}
 nodeIp03=${3}
-node_pwd=${4}
-domain=${5}
-bk_pwd=${6}
+domain=${4}
+bk_pwd=${5}
 
-echo "参数："${nodeIp01}"@@@"${nodeIp02}"@@@"${nodeIp03}"@@@"${node_pwd}"@@@"${domain}"@@@"${bk_pwd}
+echo "参数："${nodeIp01}"@@@"${nodeIp02}"@@@"${nodeIp03}"@@@"${domain}"@@@"${bk_pwd}
 
 
 echo "解压安装包"
@@ -47,11 +46,12 @@ echo "执行蓝鲸自带免密命令"
 bash /data/install/configure_ssh_without_pass
 
 
-#echo "开始安装"
-#cd /data/install
-#cd /data/install  && yes yes|./bk_install common
-#cd /data/install  && ./health_check/check_bk_controller.sh
+echo "开始安装"
+cd /data/install
+cd /data/install  && yes yes|./bk_install common
+cd /data/install  && ./health_check/check_bk_controller.sh
 
+echo "手动执行 cd /data/install  && ./bk_install paas"
 #cd /data/install  && ./bk_install paas
 
 

@@ -1,0 +1,53 @@
+pipeline {
+    agent {
+        node{
+            label 'BkNode01'
+        }
+    }
+
+    stages {
+        stage('INSTALL') {
+            steps {
+                script {
+                    echo "#######################################################【action=${action}】#######################################################################"
+                    if (action == 'prepare') {
+                        echo "prepare START"
+                        sh "sh ./blueking/install/run-bk_prepare.sh ${nodeIp01} ${nodeIp02} ${nodeIp03} ${node_pwd} ${file_path}"
+                        echo "prepare END"
+                    }
+                    if (action == 'install1') {
+                        echo "install START"
+                        sh "sh ./blueking/install/run-bk_install1.sh ${nodeIp01} ${nodeIp02} ${nodeIp03} ${domain} ${bk_pwd}"
+                        echo "install END"
+                    }
+                    if (action == 'install2') {
+                        echo "install2 START"
+                        sh "sh ./blueking/install/run-bk_install2.sh"
+                        echo "install2 END"
+                    }
+                    if (action == 'delete') {
+                        echo "remove START"
+                        sh "sh ./blueking/install/run-bk_delete.sh ${nodeIp01} ${nodeIp02} ${nodeIp03}"
+                        echo "remove END"
+                    }
+                    if (action == 'db_backup') {
+                        echo "dbbackup START"
+                        sh "sh ./blueking/dbback/run-bk_dbbackup.sh ${file_path} ${nodeIp02}"
+                        echo "dbbackup END"
+                    }
+                    if (action == 'db_recover') {
+                        echo "dbrecover START"
+                        sh "sh ./blueking/dbback/run-bk_dbrecover.sh ${file_path} ${nodeIp02} ${db_recover_date}"
+                        echo "dbrecover END"
+                    }
+                    if (action == 'installtest') {
+                        sh "who"
+                        sh "sh ./blueking/install/run-test.sh"
+                    }
+
+                    echo "finished"
+                }
+            }
+        }
+    }
+}
