@@ -11,8 +11,8 @@ echo "参数："${nodeIp01}"@@@"${nodeIp02}"@@@"${nodeIp03}"@@@"${node_pwd}"@@@"
 
 # 执行前把安装包和证书上传到/data目录
 echo "复制安装包和证书"
-cp ${file_path}/bkce_basic_suite-6.0.5.tgz /data/
-cp ${file_path}/ssl_certificates.tar.gz /data/
+#cp ${file_path}/bkce_basic_suite-6.0.5.tgz /data/
+#cp ${file_path}/ssl_certificates.tar.gz /data/
 
 echo "执行免密"
 yum install -y sshpass
